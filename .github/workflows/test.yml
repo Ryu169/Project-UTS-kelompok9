@@ -1,0 +1,11 @@
+name: test-my-app
+on: [push, workflow_dispatch]
+jobs:
+  drive:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: Ryu169
+    - uses: Ryu169
+      with:
+        channel: 'stable'
+    - run: flutter test

@@ -1,0 +1,30 @@
+name: Kelompok 9
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-android-apk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: Ryu169
+
+      - name: Flutter action
+        uses: Ryu169
+        with:
+          flutter-version: '3.3.0' #'2.18.0'
+          channel: stable
+          cache: true
+          cache-key: flutter
+          cache-path: ${{ runner.tool_cache }}/flutter
+        
+      - run: |
+          flutter pub get
+          flutter test
+          flutter build apk
+          flutter build appbundle
